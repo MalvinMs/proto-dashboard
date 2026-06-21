@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,19 +35,41 @@ const Login = () => {
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
       {/* Left Section - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-400 to-blue-600 justify-center items-center text-white p-12">
+      <motion.div
+        initial={{ x: -60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-400 to-blue-600 justify-center items-center text-white p-12"
+      >
         <div className="text-center">
           {/* Logo */}
-          <div className="mb-6 flex justify-center">
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 200, damping: 15 }}
+            className="mb-6 flex justify-center"
+          >
             <img src="/logo.svg" alt="Logo" className="w-24 h-24" />
-          </div>
-          <h1 className="text-4xl font-bold">Yann UI/UX Designer</h1>
+          </motion.div>
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="text-4xl font-bold"
+          >
+            Yann UI/UX Designer
+          </motion.h1>
         </div>
-      </div>
+      </motion.div>
 
       {/* Right Section - Login Form */}
       <div className="w-full lg:w-1/2 flex justify-center items-center p-6">
-        <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md">
+        <motion.div
+          initial={{ x: 60, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md"
+        >
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Masuk ke Sistem
           </h2>
@@ -137,12 +160,14 @@ const Login = () => {
             </div>
 
             {/* Submit Button */}
-            <button
+            <motion.button
               type="submit"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
               Masuk
-            </button>
+            </motion.button>
           </form>
 
           {/* Footer */}
@@ -155,7 +180,7 @@ const Login = () => {
               Daftar sekarang
             </a>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
